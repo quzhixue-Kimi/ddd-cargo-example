@@ -6,15 +6,10 @@ jobs:
       - image: circleci/openjdk:8u242-jdk
     steps:
       - checkout
-      - run:
-          name: Determine which directories have changed
-          command: |
-            git diff --no-commit-id --name-only -r `git log -n 2 --oneline --pretty=format:"%h" | tail -n1` | cut -d/ -f1 | sort -u >  projects
-            printf "Modified directories:\n"
   cargo-example:
     docker:
       - image: circleci/openjdk:8u242-jdk
-    working_directory: .
+    working_directory: ~/ddd-cargo-example
     steps:
       - build-service:
           service-name: "ddd-cargo-example"
@@ -28,7 +23,7 @@ commands:
     steps:
       # git pull
       - checkout:
-          path: .
+          path: ~/ddd-cargo-example
 
       - setup_remote_docker
 
