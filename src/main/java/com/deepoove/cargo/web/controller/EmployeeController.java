@@ -31,6 +31,11 @@ public class EmployeeController {
   @Autowired
   private EmployeeQueryService employeeQueryService;
 
+  @GetMapping(value = "/ping")
+  public String ping() {
+    return "pong";
+  }
+
   @GetMapping()
   public List<EmployeeDTO> queryEmployees(@RequestParam(value = "name", required = false) String name) {
     if (!StringUtils.isEmpty(name)) {

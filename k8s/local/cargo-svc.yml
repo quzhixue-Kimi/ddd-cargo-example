@@ -35,6 +35,19 @@ spec:
         envFrom:
         - configMapRef:
             name: cargo-config
+        livenessProbe:
+          httpGet:
+            path: /employee/ping
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /employee/ping
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 60
 ---
 apiVersion: v1
 kind: Service
