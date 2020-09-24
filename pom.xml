@@ -125,6 +125,7 @@
             <repository>${docker.image.prefix}/${project.artifactId}</repository>
             <contextDirectory>${basedir}</contextDirectory>
             <pushImage>true</pushImage>
+            <tag>${docker.image.tag}</tag>
             <serverId>docker.io</serverId>
             <registryUrl>https://index.docker.io/v1/</registryUrl>
             <useMavenSettingsForAuth>${dockerfile.maven.settings.auth}</useMavenSettingsForAuth>
