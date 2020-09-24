@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cargo-config
+data:
+  SERVER_PORT: "8080"
+  DATASOURCE_URL: jdbc:mysql://10.30.148.60:3306/ddd-sayi-db?useUnicode=true&characterEncoding=UTF-8
+  DATASOURCE_USERNAME: root
+  DATASOURCE_PASSWORD: root
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cargo
+spec:
+  selector:
+    matchLabels:
+      app: cargo
+  template:
+    metadata:
+      labels:
+        app: cargo
+    spec:
+      containers:
+      - name: cargo
+        image: kimiqu/ddd-cargo-example:0.0.1-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "512m"
+          limits:
+            memory: "512Mi"
+            cpu: "512m"
+        envFrom:
+        - configMapRef:
+            name: cargo-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cargo
+  labels:
+    svc: cargo
+spec:
+  selector:
+    app: cargo
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP

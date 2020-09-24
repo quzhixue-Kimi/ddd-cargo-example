@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deepoove.cargo.infrastructure.db.mapper.EmployeeMapper">
+
+  <resultMap id="employeeDO" type="com.deepoove.cargo.infrastructure.db.dataobject.EmployeeDO">
+    <result property="id" column="id" />
+    <result property="name" column="name" />
+    <result property="age" column="age" />
+    <result property="gender" column="gender" />
+    <result property="title" column="title" />
+    <result property="yearsOfService" column="years_of_service" />
+  </resultMap>
+
+  <select id="select" resultMap="employeeDO">
+		SELECT * FROM employee WHERE id = #{id}
+  </select>
+  <select id="all" resultMap="employeeDO">
+		SELECT * FROM employee
+  </select>
+  <select id="selectByName" resultMap="employeeDO">
+    SELECT * FROM employee WHERE name = #{name}
+  </select>
+  <select id="selectByTitle" resultMap="employeeDO">
+    SELECT *FROM employee WHERE title = #{title}
+  </select>
+  <insert id="save">
+		INSERT INTO employee (
+		`name`,
+		`age`,
+		`gender`,
+		`title`,
+		`years_of_service`)
+		VALUES (#{name},#{age},#{gender},#{title},#{yearsOfService})
+  </insert>
+  <delete id="delete">
+    DELETE FROM employee WHERE id = #{id}
+  </delete>
+</mapper>
