@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: cargo
-        image: kimiqu/ddd-cargo-example:0.0.1-SNAPSHOT
+        image: kimiqu/ddd-cargo-example:Build-13-CI
         imagePullPolicy: IfNotPresent
         resources:
           requests:
@@ -39,15 +39,15 @@ spec:
           httpGet:
             path: /employee/ping
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 60
+          initialDelaySeconds: 20
+          periodSeconds: 20
           failureThreshold: 3
         readinessProbe:
           httpGet:
             path: /employee/ping
             port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 60
+          initialDelaySeconds: 20
+          periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
