@@ -1,9 +1,37 @@
 kind: pipeline
+type: docker
 name: default
 
+workspace:
+  - path: ~/
+
 steps:
-- name: test
+- name: clone
+  image: alpine/git
+  commands:
+  - git clone https://github.com/quzhixue-Kimi/ddd-cargo-example.git .
+  - pwd
+  - ls ~/
+  - cd ~/ddd-cargo-example
+  - ls -la
+
+- name: build
   image: maven:3.6.3-adoptopenjdk-8
   commands:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -U -X
+  - mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -U -X
   - echo 'hello build'
+
+- name: ping
+  image: redis
+  commands:
+  - redis-cli -h cache ping
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
+
+services:
+  - name: cache
+    image: redis
