@@ -9,7 +9,7 @@ steps:
 - name: clone
   image: docker:git
   commands:
-  - git clone https://github.com/quzhixue-Kimi/ddd-cargo-example.git .
+  - git clone https://github.com/quzhixue-Kimi/ddd-cargo-example.git ddd-cargo-example
   - pwd
   - ls
   - cd ddd-cargo-example
