@@ -45,3 +45,8 @@ trigger:
 services:
   - name: cache
     image: redis
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/docker.sock
