@@ -19,8 +19,17 @@ steps:
   image: maven:3.6.3-adoptopenjdk-8
   commands:
   - cd /drone/src/ddd-cargo-example
-  - mvn clean package dockerfile:build dockerfile:push -DskipTests=true -Ddockerfile.maven.settings.auth=false -X -U
+  - mvn clean package -DskipTests=true -Ddockerfile.maven.settings.auth=false -X -U
   - echo 'hello build'
+
+- name: docker test
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run/docker.sock
+  commands:
+  - docker images
+  - docker ps -a
 
 - name: ping
   image: redis
