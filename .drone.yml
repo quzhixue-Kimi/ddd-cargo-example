@@ -3,7 +3,7 @@ type: docker
 name: default
 
 workspace:
-  - path: ~/
+  - path: /drone/src
 
 steps:
 - name: clone
@@ -11,8 +11,8 @@ steps:
   commands:
   - git clone https://github.com/quzhixue-Kimi/ddd-cargo-example.git .
   - pwd
-  - ls ~/
-  - cd ~/ddd-cargo-example
+  - ls /drone/src
+  - cd /drone/src/ddd-cargo-example
   - ls -la
 
 - name: build
