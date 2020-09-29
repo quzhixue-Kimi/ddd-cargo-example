@@ -2,17 +2,14 @@ kind: pipeline
 type: docker
 name: clone-build-test
 
-workspace:
-- path: /drone/src
-
 steps:
 - name: clone
   image: alpine/git
   commands:
   - git clone https://github.com/quzhixue-Kimi/ddd-cargo-example.git .
   - pwd
-  - ls /drone/src
-  - cd /drone/src/ddd-cargo-example
+  - ls
+  - cd ddd-cargo-example
   - ls -la
 
 - name: build
