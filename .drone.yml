@@ -26,9 +26,9 @@ steps:
   image: docker:dind
   volumes:
   - name: dockersock
-    path: /var/run/docker.sock
+    path: /var/run
   commands:
-  - docker images
+  - sleep 5 # give docker enough time to start
   - docker ps -a
 
 - name: ping
@@ -43,10 +43,15 @@ trigger:
   - push
 
 services:
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+    - name: dockersock
+      path: /var/run
   - name: cache
     image: redis
 
 volumes:
 - name: dockersock
-  host:
-    path: /var/run/docker.sock
+  temp: {}
