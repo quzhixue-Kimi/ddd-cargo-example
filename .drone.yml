@@ -1,9 +1,9 @@
 kind: pipeline
 type: docker
-name: default
+name: clone-build-test
 
 workspace:
-  path: /drone/src
+- path: /drone/src
 
 steps:
 - name: clone
