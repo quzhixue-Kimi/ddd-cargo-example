@@ -17,9 +17,6 @@ steps:
 
 - name: build
   image: maven:3.6.3-adoptopenjdk-8
-  settings:
-    dockerconfig:
-      from_secret: dockerconfig
   commands:
   - cd /drone/src/ddd-cargo-example
   - mvn clean package dockerfile:build dockerfile:push -DskipTests=true -Ddockerfile.maven.settings.auth=false -X -U

@@ -126,8 +126,10 @@
             <repository>${docker.image.prefix}/${project.artifactId}</repository>
             <contextDirectory>${basedir}</contextDirectory>
             <pushImage>true</pushImage>
+            <username>kimiqu</username>
+            <password>.,,.Kimi2012</password>
             <tag>${docker.image.tag}</tag>
-            <serverId>docker.io</serverId>
+            <!-- <serverId>docker.io</serverId> -->
             <registryUrl>https://index.docker.io/v1/</registryUrl>
             <useMavenSettingsForAuth>${dockerfile.maven.settings.auth}</useMavenSettingsForAuth>
             <buildArgs>
