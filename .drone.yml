@@ -2,9 +2,12 @@ kind: pipeline
 type: docker
 name: clone-build-test
 
+clone:
+  disable: true
+
 steps:
 - name: clone
-  image: alpine/git
+  image: docker:git
   commands:
   - git clone https://github.com/quzhixue-Kimi/ddd-cargo-example.git .
   - pwd
