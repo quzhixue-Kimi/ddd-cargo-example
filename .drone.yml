@@ -18,6 +18,7 @@ steps:
 - name: build
   image: maven:3.6.3-adoptopenjdk-8
   commands:
+  - cd /drone/src/ddd-cargo-example
   - mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -U -X
   - echo 'hello build'
 
